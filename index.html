@@ -93,6 +93,18 @@
         console.log('button clicked');
 
         try {
+          console.log('parent', window.parent);
+        } catch(error){
+          console.error(String(error))
+        }
+
+        try {
+          console.log('frameElement ', window.frameElement);
+        } catch(error){
+          console.error(String(error))
+        }
+
+        try {
           console.log('cookie', document.cookie);
         } catch(error){
           console.error(String(error))
