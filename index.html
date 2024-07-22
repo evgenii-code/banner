@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Some banner</title>
+    <style>
+      :root {
+        --_color-background: #e7e6ff;
+        --_color-primary: #020238;
+        --_color-primary-hover: #5b5b96;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 14px;
+      }
+
+      body {
+        min-height: 90px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      @media screen and (max-width: 920px) {
+        body {
+          min-height: 60px;
+        }
+      }
+
+      .banner {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 20px 30px;
+        background-color: var(--_color-background);
+      }
+
+      @media screen and (max-width: 920px) {
+        .banner {
+          padding: 10px;
+        }
+      }
+
+      .banner__wrapper {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .banner__button {
+        padding: 10px 10px;
+        border: none;
+        border-radius: 4px;
+        color: #f8f8f8;
+        background-color: var(--_color-primary);
+        cursor: pointer;
+      }
+
+      .banner__button:hover {
+        background-color: var(--_color-primary-hover);
+      }
+
+      .banner__link {
+        text-decoration-thickness: 1px;
+        color: var(--_color-primary);
+      }
+
+      .banner__link:hover {
+        color: var(--_color-primary-hover);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner">
+      <div class="banner__wrapper">
+        <button class="banner__button">Try now</button>
+
+        <a class="banner__link" href="https://ya.ru" target="_blank"
+          >Learn more</a
+        >
+      </div>
+    </div>
+
+    <script lang="text/javascript">
+      const button = document.querySelector('.banner__button');
+      const handleButtonClick = () => {
+        console.log('button clicked');
+
+        try {
+          console.log('cookie', document.cookie);
+        } catch(error){
+          console.error(String(error))
+        }
+
+        try {
+          console.log('localStorage', localStorage.getItem("foo"));
+        } catch(error){
+          console.error(String(error))
+        }
+
+        try {
+          window.open('https://google.com', '_blank')
+        } catch(error){
+          console.error(String(error))
+        }
+      }
+
+      button.addEventListener('click', handleButtonClick);
+    </script>
+  </body>
+</html>
