@@ -79,51 +79,80 @@
   <body>
     <div class="banner">
       <div class="banner__wrapper">
-        <button class="banner__button">Try now</button>
+        <div class="banner__controls">
+          <button
+            class="banner__button banner__button_role_google"
+            data-url="https://google.ru"
+          >
+            Google
+          </button>
 
-        <a class="banner__link" href="https://ya.ru" target="_blank"
-          >Learn more</a
-        >
+          <button
+            class="banner__button banner__button_role_yandex"
+            data-url="https://ya.ru"
+          >
+            Yandex
+          </button>
+        </div>
+
+        <div class="banner__controls">
+          <a class="banner__link" href="https://google.ru" target="_blank"
+            >Google</a
+          >
+
+          <a class="banner__link" href="https://ya.ru" target="_blank"
+            >Yandex</a
+          >
+        </div>
       </div>
     </div>
 
     <script lang="text/javascript">
-      const button = document.querySelector('.banner__button');
-      const handleButtonClick = () => {
-        console.log('button clicked');
+      const buttonGoogle = document.querySelector('.banner__button_role_google');
+      const buttonYandex = document.querySelector('.banner__button_role_yandex');
 
-        try {
-          console.log('parent', window.parent);
-        } catch(error){
-          console.error(String(error))
-        }
+      let count = 0;
 
+      const catchError = (cb) => {
         try {
-          console.log('frameElement ', window.frameElement);
+          return cb();
         } catch(error){
-          console.error(String(error))
-        }
-
-        try {
-          console.log('cookie', document.cookie);
-        } catch(error){
-          console.error(String(error))
-        }
-
-        try {
-          console.log('localStorage', localStorage.getItem("foo"));
-        } catch(error){
-          console.error(String(error))
-        }
-
-        try {
-          window.open('https://google.com', '_blank')
-        } catch(error){
-          console.error(String(error))
+          return String(error);
         }
       }
 
-      button.addEventListener('click', handleButtonClick);
+      const consoleLog = (cb) => console.log(`${++count} - `, catchError(cb));
+
+      const getParentCookies = () => consoleLog(() => parent.document.cookie);
+
+      const getFrameElement = () => consoleLog(() => window.frameElement);
+
+      const getCookies = () => consoleLog(() => document.cookie);
+
+      const getLocalStorage = () => consoleLog(() => localStorage.getItem("foo"));
+
+      const openNewTab = (event) => {
+        const { url } = event?.target?.dataset || {};
+
+        if (!url) {
+          return null;
+        }
+
+        catchError(() => {
+          window.open(url, '_blank')
+        })
+      }
+
+      const handleButtonClick = (event) => {
+        getParentCookies();
+        getFrameElement();
+        getCookies();
+        getLocalStorage();
+        openNewTab(event);
+      }
+
+      buttonGoogle.addEventListener('click', handleButtonClick);
+      buttonYandex.addEventListener('click', handleButtonClick);
     </script>
   </body>
 </html>
