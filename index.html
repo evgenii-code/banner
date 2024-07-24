@@ -81,35 +81,35 @@
       <div class="banner__wrapper">
         <div class="banner__controls">
           <button
-            class="banner__button banner__button_role_google"
-            data-url="https://google.ru"
+            class="banner__button banner__button_role_first"
+            data-url="https://wemakefab.ru"
           >
-            Google
+            Wemakefab
           </button>
 
           <button
-            class="banner__button banner__button_role_yandex"
-            data-url="https://ya.ru"
+            class="banner__button banner__button_role_second"
+            data-url="https://dsgners.ru"
           >
-            Yandex
+            DSGNERS
           </button>
         </div>
 
         <div class="banner__controls">
-          <a class="banner__link" href="https://google.ru" target="_blank"
-            >Google</a
+          <a class="banner__link" href="https://wemakefab.ru" target="_blank"
+            >Wemakefab</a
           >
 
-          <a class="banner__link" href="https://ya.ru" target="_blank"
-            >Yandex</a
+          <a class="banner__link" href="https://dsgners.ru" target="_blank"
+            >DSGNERS</a
           >
         </div>
       </div>
     </div>
 
     <script lang="text/javascript">
-      const buttonGoogle = document.querySelector('.banner__button_role_google');
-      const buttonYandex = document.querySelector('.banner__button_role_yandex');
+      const buttonFirst = document.querySelector('.banner__button_role_first');
+      const buttonYandex = document.querySelector('.banner__button_role_second');
 
       let count = 0;
 
@@ -151,7 +151,7 @@
         openNewTab(event);
       }
 
-      buttonGoogle.addEventListener('click', handleButtonClick);
+      buttonFirst.addEventListener('click', handleButtonClick);
       buttonYandex.addEventListener('click', handleButtonClick);
     </script>
   </body>
